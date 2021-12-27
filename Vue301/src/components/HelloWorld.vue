@@ -46,6 +46,7 @@ export default {
   methods: {
     onClick() {
       console.log("click me!!");
+      console.log("object");
     },
   },
   setup() {
