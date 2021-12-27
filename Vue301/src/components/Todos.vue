@@ -77,7 +77,7 @@ export default {
       editedTodo: null, //正在编辑的todo
       visibitlity: "all",
       filterTodos: computed(() => {
-        filters[state.visibitlity](state.todos);
+        return filters[state.visibitlity](state.todos);
       }),
     });
     function addTodo() {

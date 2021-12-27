@@ -5,7 +5,7 @@
     长度：{{ mainStore.nameLength }}
   </div>
   <hr />
-  <NButton @click="updateName" type="primary">修改store中的name</NButton>
+  <NButton type="primary" @click="updateName">修改store中的name</NButton>
 </template>
 
 <script setup lang="ts">
