@@ -1,15 +1,21 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <NextPageVue></NextPageVue> -->
+  <TodosVue></TodosVue>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
+// import NextPageVue from "./components/NextPage.vue";
+import TodosVue from "./components/Todos.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    TodosVue,
+    // HelloWorld,
+    // NextPageVue,
   },
 };
 </script>

@@ -13,12 +13,17 @@
 
   <!-- vmodal -->
   <VmodalTestVue v-model:modelValue="modelValue"></VmodalTestVue>
+  <!-- 编程方式发送和监听事件 -->
+  <button @click="sendMes">emit event</button>
 </template>
 
 <script>
 import teleportVue from "./teleport.vue";
 import Emits from "./emits.vue";
 import VmodalTestVue from "./VmodalTest.vue";
+//事件派发和监听
+import mitt from "mitt";
+export const emitter = mitt();
 import {
   reactive,
   computed,
@@ -47,6 +52,9 @@ export default {
     onClick() {
       console.log("click me!!");
       console.log("object");
+    },
+    sendMes() {
+      emitter.emit("someEvent", "foooo");
     },
   },
   setup() {
