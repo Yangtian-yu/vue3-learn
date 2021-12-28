@@ -1,15 +1,16 @@
 <template>
   <div>
     <!-- 新增 -->
-    <!-- <EditTodo
+    <EditTodo
       v-model="newTodo"
       @keyup.enter="addTodo"
       autofocus
       placeholder="新增今日代办"
       autocomplete="off"
-    ></EditTodo> -->
+    ></EditTodo>
 
     <!-- todo列表 -->
+
     <ul>
       <li
         v-for="todo in filterTodos"

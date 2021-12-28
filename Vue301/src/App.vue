@@ -3,7 +3,6 @@
   <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" />
   <NextPageVue></NextPageVue> -->
   <TodosVue></TodosVue>
-  <EditTodo></EditTodo>
 </template>
 
 <script>
