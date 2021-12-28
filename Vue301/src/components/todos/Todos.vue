@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- 新增 -->
-    <input
-      type="text"
+    <!-- <EditTodo
       v-model="newTodo"
       @keyup.enter="addTodo"
       autofocus
       placeholder="新增今日代办"
       autocomplete="off"
-    />
+    ></EditTodo> -->
+
     <!-- todo列表 -->
     <ul>
       <li
@@ -37,18 +37,18 @@
     <!-- 过滤 -->
     <p class="filters">
       <span
-        @click="visibility = 'all'"
-        :class="{ selected: (visibility = 'all') }"
+        @click="visibitlity = 'all'"
+        :class="{ selected: visibitlity === 'all' }"
         >All</span
       >
       <span
-        @click="visibility = 'Active'"
-        :class="{ selected: (visibility = 'Active') }"
+        @click="visibitlity = 'Active'"
+        :class="{ selected: visibitlity === 'Active' }"
         >Active</span
       >
       <span
-        @click="visibility = 'Completed'"
-        :class="{ selected: (visibility = 'Completed') }"
+        @click="visibitlity = 'Completed'"
+        :class="{ selected: visibitlity === 'Completed' }"
         >Completed</span
       >
     </p>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from "vue";
+import { reactive, toRefs, computed, watchEffect } from "vue";
 const filters = {
   all(todos) {
     return todos;
@@ -64,17 +64,31 @@ const filters = {
   Active(todos) {
     return todos.filter((todo) => !todo.completed);
   },
-  Completedall(todos) {
+  Completed(todos) {
     return todos.filter((todo) => todo.completed);
   },
 };
+//缓存操作
+const todosStorage = {
+  fetch() {
+    let todos = JSON.parse(localStorage.getItem("vue3-todos") || "[]");
+    todos.forEach((todo, index) => {
+      todo.id = index + 1;
+    });
+    return todos;
+  },
+  save(todos) {
+    localStorage.setItem("vue3-todos", JSON.stringify(todos));
+  },
+};
+
 export default {
   setup() {
     const state = reactive({
       newTodo: "",
       todos: [],
-      beforeEditCache: "", //缓存编辑钱的title
-      editedTodo: null, //正在编辑的todo
+      beforeEditCache: "",
+      editedTodo: null,
       visibitlity: "all",
       filterTodos: computed(() => {
         return filters[state.visibitlity](state.todos);
@@ -102,6 +116,9 @@ export default {
     function doneEdit(todo) {
       state.editedTodo = "";
     }
+    watchEffect(() => {
+      todosStorage.save(state.todos);
+    });
     return {
       ...toRefs(state),
       addTodo,
@@ -133,5 +150,14 @@ export default {
 .view,
 .editing .edit {
   display: block;
+}
+.filters > span {
+  padding: 2px 4px;
+  margin-right: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.filters > span.selected {
+  border-color: rgba(173, 47, 47, 0.5);
 }
 </style>

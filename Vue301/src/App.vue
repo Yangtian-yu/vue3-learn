@@ -3,12 +3,13 @@
   <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" />
   <NextPageVue></NextPageVue> -->
   <TodosVue></TodosVue>
+  <EditTodo></EditTodo>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 // import NextPageVue from "./components/NextPage.vue";
-import TodosVue from "./components/Todos.vue";
+import TodosVue from "./components/todos/Todos.vue";
 
 export default {
   name: "App",
