@@ -3,23 +3,24 @@
     <input
       type="text"
       v-bind="$attrs"
-      :value="modelValue"
+      :value="todoTitle"
       @input="onInputChange"
     />
+    <span></span>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    modelValue: {
+    todoTitle: {
       type: String,
       default: "",
     },
   },
   methods: {
     onInputChange(e) {
-      this.$emit("update:modelValue", e.target.value);
+      this.$emit("update:todoTitle", e.target.value);
     },
   },
 };
