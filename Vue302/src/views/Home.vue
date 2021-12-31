@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import Comp from "../components/Comp.vue";
-import CompSetup from "../components/CompSetup.vue";
+import CompSetup from "@/components/CompSetup.vue";
 </script>
 
 <style scoped></style>
