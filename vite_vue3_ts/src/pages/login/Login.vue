@@ -12,6 +12,7 @@
 import { useMainStore } from "@/store/main";
 const mainStore = useMainStore();
 const updateName = () => {
+  // eslint-disable-next-line no-console
   console.log(import.meta.env.VITE_APP_WEB_URL);
   //$patch 修改 store 中的数据
   mainStore.$patch({
