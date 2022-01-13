@@ -10,12 +10,15 @@
     <div id="app">
       <h2>{{title}}</h2>
       <input type="text" v-model="title" @keydown.enter="addTodo" />
-      <button>清理</button>
-      <ul>
+      <button v-if="active < all" @click="clear">清理</button>
+      <ul v-if="todos.length">
         <li v-for="todo in todos" :class="{done:todo.done}">
           <input type="checkbox" v-model="todo.done" />{{todo.title}}
         </li>
       </ul>
+      <div v-else>
+        <span>暂无数据</span>
+      </div>
       <div>
         全选 <input type="checkbox" v-model="allDone" />
         <span>{{active}} / {{all}}</span>
@@ -37,6 +40,9 @@
       };
     },
     methods: {
+      clear() {
+        this.todos = this.todos.filter((item) => !item.done);
+      },
       addTodo() {
         this.todos.push(this.title);
         this.title = "";
