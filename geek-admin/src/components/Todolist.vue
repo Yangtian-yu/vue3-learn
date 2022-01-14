@@ -1,6 +1,7 @@
 <template>
   <div>
     <input type="text" v-model="title" @keydown.enter="addTodo" />
+    <button v-if="active < all" @click="clear">清理</button>
     <ul v-if="todos.length">
       <li v-for="todo in todos" :key="todo.title">
         <input type="checkbox" v-model="todo.done" />
@@ -13,37 +14,28 @@
       <span>{{ active }} / {{ all }}</span>
     </div>
     <h1 @click="add">{{ count }}</h1>
+    <h2>{{ x }}</h2>
+    <h2>{{ y }}</h2>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch, watchEffect } from "vue";
+import useTodos from "./todolist";
+import { useMouse } from "../utils/mouse.js";
 let count = ref(0);
 function add() {
   count.value++;
 }
 
-let title = ref("");
-let todos = ref([{ title: "学习Vue", done: false }]);
-function addTodo() {
-  todos.value.push({
-    title: title.value,
-    done: false,
-  });
-  title.value = "";
-}
-
-let active = computed(() => {
-  return todos.value.filter((v) => !v.done).length;
+let { title, todos, addTodo, clear, active, all, allDone } = useTodos();
+let { x, y } = useMouse();
+let color = ref("red");
+watch(x, (newvalue, oldvalue) => {
+  newvalue % 2 === 0 ? (color.value = "red") : (color.value = "blue");
 });
-let all = computed(() => todos.value.length);
-let allDone = computed({
-  get: function () {
-    return active.value === 0;
-  },
-  set: function (value) {
-    return todos.value.forEach((v) => (v.done = value));
-  },
+watchEffect(() => {
+  console.log("数据被修改了", count.value);
 });
 </script>
 
@@ -51,5 +43,8 @@ let allDone = computed({
 .done {
   color: gray;
   text-decoration: line-through;
+}
+h2 {
+  color: v-bind(color);
 }
 </style>
