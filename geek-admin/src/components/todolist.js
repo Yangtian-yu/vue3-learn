@@ -4,6 +4,13 @@ export default function useTodos() {
   let title = ref("");
   let todos = ref([{ title: "学习Vue", done: false }]);
   function addTodo() {
+    if (!title.value) {
+      showModal.value = true;
+      setTimeout(() => {
+        showModal.value = false;
+      }, 1500);
+      return;
+    }
     todos.value.push({
       title: title.value,
       done: false,
@@ -26,6 +33,6 @@ export default function useTodos() {
       return todos.value.forEach((v) => (v.done = value));
     },
   });
-
-  return { title, todos, addTodo, clear, active, all, allDone };
+  let showModal = ref(false);
+  return { title, todos, addTodo, clear, active, all, allDone, showModal };
 }
