@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, watchEffect } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import useTodos from "./todolist";
 import { useMouse } from "../utils/mouse.js";
 let count = ref(0);
@@ -40,7 +40,7 @@ let { title, todos, addTodo, clear, active, all, allDone, showModal } =
   useTodos();
 let { x, y } = useMouse();
 let color = ref("red");
-watch(x, (newvalue, oldvalue) => {
+watch(x, (newvalue) => {
   newvalue % 2 === 0 ? (color.value = "red") : (color.value = "blue");
 });
 watchEffect(() => {
@@ -48,7 +48,7 @@ watchEffect(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .done {
   color: gray;
   text-decoration: line-through;
@@ -92,5 +92,22 @@ h2 {
 .flip-list-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+$padding: 10px;
+$white: #fff;
+ul {
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  li {
+    &:hover {
+      cursor: pointer;
+    }
+    list-style-type: none;
+    margin-bottom: $padding;
+    padding: $padding;
+    background: $white;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  }
 }
 </style>
