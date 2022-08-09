@@ -1,30 +1,30 @@
-import { Module } from "vuex";
-import { State } from "..";
-import http from "../../api/request";
-import { Todo } from "../../type";
+import type { Module } from 'vuex'
+import type { State } from '..'
+import http from '../../api/request'
+import type { Todo } from '../../type'
 
 const initialState = {
   todos: [] as Todo[],
-};
+}
 
-export type TodoState = typeof initialState;
+export type TodoState = typeof initialState
 
 export default {
   namespaced: true,
   state: initialState,
   mutations: {
     initTodo(state, payload: Todo[]) {
-      state.todos = payload;
+      state.todos = payload
     },
     addTodo(state, payload: Todo) {
-      state.todos.push(payload);
+      state.todos.push(payload)
     },
   },
   actions: {
     initTodo({ commit }) {
-      http.get<Todo>("todos/1").then((resp) => {
-        commit("initTodo", [resp.data]);
-      });
+      http.get<Todo>('todos/1').then((resp) => {
+        commit('initTodo', [resp.data])
+      })
       // setTimeout(() => {
       //   commit("initTodo", [
       //     {
@@ -36,11 +36,11 @@ export default {
       // }, 500);
     },
     addTodo({ commit, state }, payload: string) {
-      commit("addTodo", {
+      commit('addTodo', {
         id: state.todos.length + 1,
         title: payload,
         completed: false,
-      });
+      })
     },
   },
-} as Module<TodoState, State>;
+} as Module<TodoState, State>

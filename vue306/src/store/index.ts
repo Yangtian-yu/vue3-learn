@@ -1,13 +1,15 @@
-import { createStore, Store } from "vuex";
-import todos, { TodoState } from "./modules/Todos";
-import { InjectionKey } from "vue";
+import type { Store } from 'vuex'
+import { createStore } from 'vuex'
+import type { InjectionKey } from 'vue'
+import type { TodoState } from './modules/Todos'
+import todos from './modules/Todos'
 
-export const key: InjectionKey<Store<State>> = Symbol();
+export const key: InjectionKey<Store<State>> = Symbol()
 
-export type State = {
-  counter: number;
-  todos?: TodoState;
-};
+export interface State {
+  counter: number
+  todos?: TodoState
+}
 
 const store = createStore({
   state: {
@@ -16,6 +18,6 @@ const store = createStore({
   modules: {
     todos,
   },
-});
+})
 
-export default store;
+export default store

@@ -1,21 +1,22 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 export type AppRouteRecordRaw = RouteRecordRaw & {
-  hidden?: boolean;
-};
+  hidden?: boolean
+}
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/",
-      component: () => import("../views/Home.vue"),
+      path: '/',
+      component: () => import('../views/Home.vue'),
     },
     {
-      path: "/add",
-      component: () => import("../views/AddTodos.vue"),
+      path: '/add',
+      component: () => import('../views/AddTodos.vue'),
     },
   ],
-});
+})
 
-export default router;
+export default router
