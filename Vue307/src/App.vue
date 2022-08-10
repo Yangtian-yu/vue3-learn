@@ -13,6 +13,10 @@
   <el-button type="primary">
     <router-link to="/pinia">pinia</router-link>
   </el-button>
+  <p></p>
+  <el-button type="primary">
+    <router-link to="/pinia2">pinia2</router-link>
+  </el-button>
   <div>
     <router-view></router-view>
   </div>

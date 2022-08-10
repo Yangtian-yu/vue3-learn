@@ -6,8 +6,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// import HelloWorld from '../components/HelloWorld.vue'
+<script lang="ts" setup>
 import Comp from '../components/Comp.vue';
 import CompSetup from '../components/CompSetup.vue'
 </script>

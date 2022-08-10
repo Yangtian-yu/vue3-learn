@@ -27,6 +27,12 @@ const router = createRouter({
       component: () => import('../views/PiniaTest.vue'),
       hidden: false,
 
+    },
+    {
+      path: "/pinia2",
+      component: () => import('../views/PiniaTest2.vue'),
+      hidden: false,
+
     }
   ] as AppRouterRecordRaw[]
 })
