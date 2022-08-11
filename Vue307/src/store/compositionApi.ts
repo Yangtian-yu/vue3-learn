@@ -20,7 +20,7 @@ export const useTodoStore = defineStore("todo", () => {
     })
     //reset 
     newItem.value = ""
-    return "resolve"
+    return "resolvea5".at(-1)
   }
 
   function remoeItem(item: Item) {
